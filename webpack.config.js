@@ -52,12 +52,12 @@ module.exports = {
           },
           {
             loader: "css-loader",
-            options: {
-              modules: {
-                mode: 'local',
-                localIdentName: '[name]_[local]-[hash:5]'
-              }
-            }
+            // options: { 开启 css 模块化后, vue 组件中的 less 样式无效
+            //   modules: {
+            //     mode: 'local',
+            //     localIdentName: '[name]_[local]-[hash:5]'
+            //   }
+            // }
           },
           {
             loader: "less-loader"
