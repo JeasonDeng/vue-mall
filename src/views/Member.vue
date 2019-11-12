@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>Register 组件</h3>
+    Member
   </div>
 </template>
 
