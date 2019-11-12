@@ -52,12 +52,12 @@ module.exports = {
           },
           {
             loader: "css-loader",
-            // options: {
-            //   modules: {
-            //     mode: 'local',
-            //     localIdentName: '[name]_[local]-[hash:5]'
-            //   }
-            // }
+            options: {
+              modules: {
+                mode: 'local',
+                localIdentName: '[name]_[local]-[hash:5]'
+              }
+            }
           },
           {
             loader: "less-loader"
