@@ -6,11 +6,12 @@ import './lib/css/mui.min.css'
 import './lib/css/icons-extra.css'
 import './css/base.css'
 
-import { Header, Swipe, SwipeItem } from 'mint-ui'
+import { Header, Swipe, SwipeItem, Button } from 'mint-ui'
 
 Vue.component(Header.name, Header)
 Vue.component(Swipe.name, Swipe)
 Vue.component(SwipeItem.name, SwipeItem)
+Vue.component(Button.name, Button)
 
 axios.defaults.baseURL = 'http://www.liulongbin.top:3005'
 

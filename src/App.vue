@@ -44,7 +44,8 @@ export default {
   padding-bottom: 50px;
   .content-container {
     height: 100%;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 }
 .v-enter {
