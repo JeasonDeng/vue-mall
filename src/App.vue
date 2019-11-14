@@ -2,9 +2,11 @@
   <div class="app-container">
     <mt-header fixed title="Vue·Mall"></mt-header>
 
-  <transition>
-    <router-view></router-view>
-  </transition>
+    <div class="content-container">
+      <transition>
+        <router-view></router-view>
+      </transition>
+    </div>
 
     <nav class="mui-bar mui-bar-tab">
       <router-link class="mui-tab-item" to="/home">
@@ -35,9 +37,15 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .app-container {
+  height: 100%;
   padding-top: 40px;
+  padding-bottom: 50px;
+  .content-container {
+    height: 100%;
+    overflow: auto;
+  }
 }
 .v-enter {
   opacity: 0;
@@ -50,6 +58,6 @@ export default {
 }
 .v-enter-active,
 .v-leave-active {
-  transition: all .5s;
+  transition: all 0.5s;
 }
 </style>
