@@ -1,11 +1,6 @@
 <template>
   <div>
-    <mt-swipe>
-      <mt-swipe-item v-for="(item, i) in lunbotu" :key="i">
-        <img :src="item.img" />
-      </mt-swipe-item>
-    </mt-swipe>
-
+    <Lunbotu :lunbotu="lunbotu" :isFull="true" />
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <router-link to="/home/newslist">
@@ -38,10 +33,10 @@
         </a>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
+        <router-link to="/home/goodslist">
           <img src="../../images/menu6.png" />
           <div class="mui-media-body">Phone</div>
-        </a>
+        </router-link>
       </li>
     </ul>
   </div>
@@ -50,6 +45,8 @@
 <script>
 import axios from 'axios'
 import { Toast } from 'mint-ui'
+
+import Lunbotu from '../subComponents/Lunbotu'
 
 export default {
   data() {
@@ -71,20 +68,14 @@ export default {
           }
         })
     }
+  },
+  components: {
+    Lunbotu
   }
 }
 </script>
 
 <style lang="less" scoped>
-.mint-swipe {
-  height: 200px;
-  .mint-swipe-item {
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-}
 .mui-grid-view.mui-grid-9 {
   background-color: #fff;
   border: 0;

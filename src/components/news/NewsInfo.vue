@@ -46,6 +46,11 @@ export default {
 </script>
 
 <style lang="less">
+.line {
+    height: 1px;
+    margin-bottom: 10px;
+    background-color: #e0e0e0;
+  }
 .news-info {
   padding: 0 12px;
   h4 {
@@ -57,11 +62,6 @@ export default {
   & > p {
     display: flex;
     justify-content: space-between;
-  }
-  .line {
-    height: 1px;
-    margin-bottom: 10px;
-    background-color: #e0e0e0;
   }
   .content {
     img {

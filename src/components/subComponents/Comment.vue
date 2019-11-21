@@ -55,6 +55,8 @@ export default {
       axios.post('api/postcomment/' + this.id, { content: comment })
         .then(res => {
           if (res.data.status === 0) {
+            window.scrollTo(0, 0)
+            this.comment = ''
             this.comments.unshift({ user_name: '匿名用户', add_time: new Date(), content: comment })
           } else {
             Toast('评论失败!')
@@ -90,13 +92,14 @@ export default {
       background-color: #f0f0f0;
       color: #333;
       line-height: 30px;
-      font-size: 14px;
+      font-size: 13px;
       display: flex;
       justify-content: space-between;
     }
     .comment-content {
-      text-indent: 1.5em;
-      line-height: 40px;
+      line-height: 22px;
+      font-size: 12px;
+      word-break: break-all;
     }
   }
 }

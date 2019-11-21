@@ -17,7 +17,8 @@ module.exports = {
   },
   devServer: {
     port: 3000,
-    open: true
+    open: true,
+    host: '192.168.1.101'
   },
   module: {
     rules: [
@@ -28,7 +29,7 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react'],
-            plugins: ['@babel/plugin-proposal-class-properties', '@babel/transform-runtime', ["component",
+            plugins: ['@babel/plugin-proposal-class-properties', 'transform-remove-strict-mode', ["component",
               {
                 "libraryName": "mint-ui",
                 "style": true
