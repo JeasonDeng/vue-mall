@@ -22,7 +22,7 @@
       </router-link>
       <router-link class="mui-tab-item1" to="/cart">
         <span class="mui-icon mui-icon-extra mui-icon-extra-cart">
-          <span class="mui-badge" v-show="selectedCount !== 0">{{selectedCount}}</span>
+          <span class="mui-badge">{{selectedCount > 99 ? '99+' : selectedCount}}</span>
         </span>
         <span class="mui-tab-label">购物车</span>
       </router-link>
@@ -43,13 +43,15 @@ export default {
   },
   methods: {
     changeSelectedCount(count) {
-      this.selectedCount = this.selectedCount + count
+      setTimeout(() => {
+        this.selectedCount = this.selectedCount + count
+      }, 800)
     }
   },
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .app-container {
   height: 100%;
   .content-container {

@@ -3,6 +3,9 @@
     <div class="lunbotu-container">
       <Lunbotu :lunbotu="lunbotu" :isFull="false" />
     </div>
+    <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+      <div class="ball" v-show="flag"></div>
+    </transition>
     <div class="sell-container">
       <h3>{{goodsInfo.title}}</h3>
       <div class="line"></div>
@@ -18,7 +21,7 @@
       </p>
       <p>
         购买数量:
-        <NumberBox @getNumber="getNumber" />
+        <NumberBox @getNumber="getNumber" :max="goodsInfo.stock_quantity" />
       </p>
       <div class="btns">
         <mt-button type="primary" @click="addToCart">加入购物车</mt-button>
@@ -38,9 +41,9 @@
         <router-link :to="`/home/goodsinfo/${goodsInfo.id}/comment`" tag="div">商品评论</router-link>
         <div class="red-line" ref="redLine"></div>
       </div>
-      <transition>
+      <!-- <transition> -->
         <router-view></router-view>
-      </transition>
+      <!-- </transition> -->
     </div>
   </div>
 </template>
@@ -57,7 +60,8 @@ export default {
       id: this.$route.params.id,
       lunbotu: [],
       number: 1,
-      goodsInfo: {}
+      goodsInfo: {},
+      flag: false
     }
   },
   methods: {
@@ -81,6 +85,7 @@ export default {
       this.number = count
     },
     addToCart() {
+      this.flag = !this.flag
       this.$emit('changeSelectedCount', this.number)
     },
     redLinePos(val = this.$route.path) {
@@ -90,6 +95,22 @@ export default {
       if (val.includes('comment')) {
         this.$refs.redLine.style.left = this.$refs.tabs.clientWidth * 3 / 4 - this.$refs.redLine.clientWidth / 2 + 'px'
       }
+    },
+    beforeEnter(el) {
+      el.style.transform = 'translate(0, 0)'
+    },
+    enter(el, done) {
+      const ballPos = el.getBoundingClientRect()
+      const badgePos = document.querySelector('.mui-badge').getBoundingClientRect()
+      const xDis = badgePos.left - ballPos.left
+      const yDis = badgePos.top - ballPos.top
+      el.offsetWidth
+      el.style.transform = `translate(${xDis}px, ${yDis}px)`
+      el.style.transition = 'all .8s'
+      done()
+    },
+    afterEnter(el) {
+      this.flag = !this.flag
     }
   },
   components: {
@@ -113,19 +134,33 @@ export default {
 
 <style lang="less">
 .goodsinfo-container {
+  min-height: 1334px;
+  position: relative;
   background-color: #f5f5f5;
   .lunbotu-container {
     background-color: #fff;
     padding: 10px 0;
   }
+  .ball {
+    width: 16px;
+    height: 16px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    left: 126px;
+    top: 324px;
+    z-index: 99;
+  }
   h3 {
     margin: 0;
-    font-size: 18px;
-    line-height: 40px;
+    font-size: 17px;
+    font-weight: 500;
+    padding: 5px 0;
+    line-height: 30px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
   }
   .sell-container {
