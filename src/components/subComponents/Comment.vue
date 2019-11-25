@@ -9,7 +9,7 @@
           <span>第 {{i + 1}} 楼 &nbsp;用户: {{item.user_name}}</span>
           <span>{{item.add_time | dataFormat}}</span>
         </div>
-        <div class="comment-content">{{item.content === 'undefined' ? '默认好评' : item.content}}</div>
+        <div class="comment-content">{{item.content === '' ? '默认好评' : item.content}}</div>
       </div>
     </div>
     <mt-button type="danger" size="large" plain @click="getMoreComment">加载更多</mt-button>
@@ -55,7 +55,7 @@ export default {
       axios.post('api/postcomment/' + this.id, { content: comment })
         .then(res => {
           if (res.data.status === 0) {
-            window.scrollTo(0, 0)
+            // window.scrollTo(0, 0)
             this.comment = ''
             this.comments.unshift({ user_name: '匿名用户', add_time: new Date(), content: comment })
           } else {
@@ -97,6 +97,7 @@ export default {
       justify-content: space-between;
     }
     .comment-content {
+      padding: 0 10px;
       line-height: 22px;
       font-size: 12px;
       word-break: break-all;

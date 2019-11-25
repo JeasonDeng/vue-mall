@@ -28,8 +28,7 @@ Vue.use(VuePreview, {
   barsSize: {top: 0, bottom: 0},
   captionEl: false,
   fullscreenEl: true,
-  shareEl: true,
-  bgOpacity: 0.9,
+  bgOpacity: 1,
   tapToClose: true,
   tapToToggleControls: false
 })
@@ -38,6 +37,7 @@ axios.defaults.baseURL = 'http://www.liulongbin.top:3005'
 
 import App from './App'
 import router from './router'
+import store from './store/store'
 
 // 定义全局过滤器
 Vue.filter('dataFormat', function(data, pattern="YYYY-MM-DD HH:mm:ss") {
@@ -47,5 +47,6 @@ Vue.filter('dataFormat', function(data, pattern="YYYY-MM-DD HH:mm:ss") {
 new Vue({
   el:'#app',
   render: h => h(App),
-  router
+  router,
+  store
 })

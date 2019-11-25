@@ -109,9 +109,15 @@ export default {
   display: block;
 }
 .pswp {
-  -webkit-transform: translateZ(1px);
-  -moz-transform: translateZ(1px);
-  -o-transform: translateZ(1px);
-  transform: translateZ(1px);
+  // -webkit-transform: translateZ(1px);
+  // -moz-transform: translateZ(1px);
+  // -o-transform: translateZ(1px);
+  // transform: translateZ(1px);
+  // top: 40px!important;
+  // z-index: 9999!important;
+  // overflow-x: hidden;
+  // overflow-y: auto;
+  overflow: auto!important;
+  // top: 40px !important;
 }
 </style>

@@ -1,13 +1,12 @@
 <template>
   <div class="app-container">
-    <mt-header fixed title="Vue·Mall"></mt-header>
+    <mt-header fixed title="Vue·Mall">
+      <mt-button icon="back" slot="left" @click="$router.go(-1)" v-show="$route.path !== '/home'"></mt-button>
+    </mt-header>
 
     <div class="content-container" ref="contentContainer">
       <transition>
-        <router-view
-          :contentContainer="$refs.contentContainer"
-          @changeSelectedCount="changeSelectedCount"
-        ></router-view>
+        <router-view :contentContainer="$refs.contentContainer"></router-view>
       </transition>
     </div>
 
@@ -22,7 +21,7 @@
       </router-link>
       <router-link class="mui-tab-item1" to="/cart">
         <span class="mui-icon mui-icon-extra mui-icon-extra-cart">
-          <span class="mui-badge">{{selectedCount > 99 ? '99+' : selectedCount}}</span>
+          <span class="mui-badge">{{totalCount}}</span>
         </span>
         <span class="mui-tab-label">购物车</span>
       </router-link>
@@ -38,16 +37,16 @@
 export default {
   data() {
     return {
-      selectedCount: 0
+      totalCount: this.$store.getters.totalCount
     }
   },
-  methods: {
-    changeSelectedCount(count) {
+  watch: {
+    '$store.getters.totalCount': function(val) {
       setTimeout(() => {
-        this.selectedCount = this.selectedCount + count
+        this.totalCount = val
       }, 800)
     }
-  },
+  }
 }
 </script>
 
@@ -60,7 +59,6 @@ export default {
     padding-top: 40px;
     padding-bottom: 50px;
     overflow-x: hidden;
-    overflow-y: auto;
   }
 }
 .v-enter {

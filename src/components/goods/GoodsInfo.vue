@@ -86,7 +86,12 @@ export default {
     },
     addToCart() {
       this.flag = !this.flag
-      this.$emit('changeSelectedCount', this.number)
+      this.$store.dispatch('add', {
+        id: this.id,
+        count: this.number,
+        selected: true,
+        price: this.goodsInfo.sell_price
+      })
     },
     redLinePos(val = this.$route.path) {
       if (val.includes('detail')) {
