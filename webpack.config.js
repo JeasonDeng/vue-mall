@@ -18,7 +18,7 @@ module.exports = {
   devServer: {
     port: 3000,
     open: true,
-    host: '192.168.1.101'
+    host: '192.168.1.100'
   },
   module: {
     rules: [

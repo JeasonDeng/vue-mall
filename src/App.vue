@@ -41,7 +41,11 @@ export default {
     }
   },
   watch: {
-    '$store.getters.totalCount': function(val) {
+    '$store.getters.totalCount': function (val) {
+      if (this.$route.path === '/cart') {
+        this.totalCount = val
+        return
+      }
       setTimeout(() => {
         this.totalCount = val
       }, 800)
@@ -73,6 +77,9 @@ export default {
 .v-enter-active,
 .v-leave-active {
   transition: all 0.5s;
+}
+nav {
+  background-color: #fff;
 }
 .mui-bar .mui-icon:active {
   opacity: 1;

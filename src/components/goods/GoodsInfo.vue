@@ -21,7 +21,7 @@
       </p>
       <p>
         购买数量:
-        <NumberBox @getNumber="getNumber" :max="goodsInfo.stock_quantity" />
+        <NumberBox @getNumber="getNumber" :max="goodsInfo.stock_quantity" :id="goodsInfo.id" />
       </p>
       <div class="btns">
         <mt-button type="primary" @click="addToCart">加入购物车</mt-button>
@@ -90,7 +90,8 @@ export default {
         id: this.id,
         count: this.number,
         selected: true,
-        price: this.goodsInfo.sell_price
+        price: this.goodsInfo.sell_price,
+        stock: this.goodsInfo.stock_quantity
       })
     },
     redLinePos(val = this.$route.path) {
